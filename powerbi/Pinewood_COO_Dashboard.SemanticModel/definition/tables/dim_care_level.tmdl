@@ -1,0 +1,36 @@
+table dim_care_level
+	lineageTag: ef47adc9-0f88-4c68-83b9-13fc131ce12c
+
+	column care_level
+		dataType: string
+		lineageTag: cddca72f-36c9-4010-b2cd-a8e90c29c11f
+		summarizeBy: none
+		sourceColumn: care_level
+		sortByColumn: display_order
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column display_order
+		dataType: int64
+		formatString: 0
+		lineageTag: c55cbdc0-0150-4d68-b8d3-64a7dfaaf21a
+		summarizeBy: sum
+		sourceColumn: display_order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_care_level = m
+		mode: import
+		source =
+				let
+				    FileBinary = GoldFiles{[Name = "dim_care_level.parquet"]}[Content],
+				    Source = Parquet.Document(FileBinary)
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

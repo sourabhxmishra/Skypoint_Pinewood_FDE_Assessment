@@ -1,0 +1,64 @@
+table fact_resident_day
+	lineageTag: 88a8de85-0a15-42fe-8198-ff9c72c9b1b0
+
+	column resident_id
+		dataType: string
+		isHidden
+		lineageTag: 8f40089b-d288-40e3-9820-3a58043fd63b
+		summarizeBy: none
+		sourceColumn: resident_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column community_id
+		dataType: string
+		lineageTag: d4f1eea0-fc92-4e9e-b2d2-d5c800d3a763
+		summarizeBy: none
+		sourceColumn: community_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 31a8d4c4-5a38-4e3d-b125-04557eeeb580
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column care_level
+		dataType: string
+		lineageTag: 293ff16b-e8d0-4667-aba2-5e429ec9c51b
+		summarizeBy: none
+		sourceColumn: care_level
+
+		annotation SummarizationSetBy = Automatic
+
+	column resident_day_count
+		dataType: int64
+		formatString: 0
+		lineageTag: a82d8009-21f2-4590-9ae3-fd89a82a83b5
+		summarizeBy: sum
+		sourceColumn: resident_day_count
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_resident_day = m
+		mode: import
+		source =
+				let
+				    FileBinary = GoldFiles{[Name = "fact_resident_day.parquet"]}[Content],
+				    Source = Parquet.Document(FileBinary),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"resident_day_count", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "179607db10ba27861b0c",
+  "displayName": "Validation Page",
+  "displayOption": "FitToWidth",
+  "height": 1080,
+  "width": 1920,
+  "visibility": "HiddenInViewMode"
+}

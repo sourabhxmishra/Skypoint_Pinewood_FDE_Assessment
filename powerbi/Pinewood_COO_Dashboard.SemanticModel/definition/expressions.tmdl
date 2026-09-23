@@ -1,0 +1,27 @@
+/// Folder containing the seven generated Gold Parquet files
+expression GoldFolderPath = "C:\Users\v-soumishra\Downloads\personal\Learning\Skypoint_Pinewood_FDE_Assessment\data\output\gold" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 3802c82e-6444-4aed-8bf2-8a8cb290e3c6
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
+expression GoldFiles =
+		let
+		    Source = Folder.Files(GoldFolderPath),
+		    KeepParquet = Table.SelectRows(
+		        Source,
+		        each [Extension] = ".parquet"
+		    ),
+		    KeepColumns = Table.SelectColumns(
+		        KeepParquet,
+		        {"Name", "Content"}
+		    )
+		in
+		    KeepColumns
+	lineageTag: 02ec1d7d-027a-4761-aa79-04ee5eb9a326
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

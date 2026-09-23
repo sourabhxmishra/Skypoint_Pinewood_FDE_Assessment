@@ -1,0 +1,7 @@
+role 'Community Executive Director'
+	modelPermission: read
+
+	tablePermission dim_community = 'dim_community'[community_id] = "C001"
+
+	annotation PBI_Id = 2f08c59b446d491ab05fc39e58a5aa82
+

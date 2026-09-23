@@ -1,0 +1,24 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Generated local data
+data/output/
+*.duckdb
+*.duckdb.wal
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+
+# Power BI temporary files
+*.pbitmp
+**/.pbi/
+~$*
+# Editor and operating system
+.vscode/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,83 @@
+table fact_incident
+	lineageTag: 5df745cb-a2e6-4849-85a4-a15f527e9cf6
+
+	column incident_id
+		dataType: string
+		isHidden
+		lineageTag: 5acfddc9-97c0-4d9b-b92d-a76faab23eb6
+		summarizeBy: none
+		sourceColumn: incident_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column resident_id
+		dataType: string
+		isHidden
+		lineageTag: d07ed097-32ad-43af-b602-bcfa7e77700b
+		summarizeBy: none
+		sourceColumn: resident_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column community_id
+		dataType: string
+		lineageTag: 5480f409-8875-4b74-be0c-682915d7f7a1
+		summarizeBy: none
+		sourceColumn: community_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column incident_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d0ab5036-c3c1-4da0-8b60-6b7b42dead2e
+		summarizeBy: none
+		sourceColumn: incident_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column care_level
+		dataType: string
+		lineageTag: 5a6511d1-1f81-4797-8a5f-48729554907c
+		summarizeBy: none
+		sourceColumn: care_level
+
+		annotation SummarizationSetBy = Automatic
+
+	column incident_type
+		dataType: string
+		lineageTag: 4635abe6-0483-4125-84c4-0513f0cc5160
+		summarizeBy: none
+		sourceColumn: incident_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column severity
+		dataType: int64
+		formatString: 0
+		lineageTag: deb8fd73-60b5-44d8-8136-1449bddf5015
+		summarizeBy: sum
+		sourceColumn: severity
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_incident = m
+		mode: import
+		source =
+				let
+				    FileBinary = GoldFiles{[Name = "fact_incident.parquet"]}[Content],
+				    Source = Parquet.Document(FileBinary),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"severity", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

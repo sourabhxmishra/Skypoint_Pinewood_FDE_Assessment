@@ -1,0 +1,112 @@
+table _Measures
+	lineageTag: 30250b92-852b-4753-ac9b-2080d5089bed
+
+	measure 'Current Occupancy %' =
+			
+			VAR LatestMonthStart =
+			    MAX ( 'fact_occupancy_monthly'[month_start] )
+			RETURN
+			    CALCULATE (
+			        DIVIDE (
+			            SUM ( 'fact_occupancy_monthly'[occupied_resident_count] ),
+			            SUM ( 'fact_occupancy_monthly'[valid_unit_count] )
+			        ),
+			        KEEPFILTERS (
+			            'fact_occupancy_monthly'[month_start] = LatestMonthStart
+			        )
+			    )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 2c8dac3a-c0bc-43ae-9247-5433526fd9f2
+
+	measure 'Trailing 90-Day Move-Out Rate %' =
+			
+			VAR EndDate =
+			    MAX ( 'dim_date'[date] )
+			VAR DateWindow =
+			    DATESINPERIOD (
+			        'dim_date'[date],
+			        EndDate,
+			        -90,
+			        DAY
+			    )
+			VAR MoveOutCount =
+			    CALCULATE (
+			        DISTINCTCOUNT ( 'fact_lease'[lease_id] ),
+			        DateWindow,
+			        NOT ISBLANK ( 'fact_lease'[move_out_date] )
+			    )
+			VAR ResidentDays =
+			    CALCULATE (
+			        SUM ( 'fact_resident_day'[resident_day_count] ),
+			        DateWindow
+			    )
+			VAR DaysInWindow =
+			    COUNTROWS ( DateWindow )
+			VAR AverageDailyCensus =
+			    DIVIDE ( ResidentDays, DaysInWindow )
+			RETURN
+			    DIVIDE ( MoveOutCount, AverageDailyCensus )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: a8d1e5c0-ed84-45d2-9933-4e38bf59aa93
+
+	measure 'Incident Rate per 100 Resident-Days' =
+			
+			DIVIDE (
+			    COUNTROWS ( 'fact_incident' ),
+			    SUM ( 'fact_resident_day'[resident_day_count] )
+			) * 100
+		formatString: 0.0000
+		lineageTag: 14dc1378-9969-4007-bc98-09afe8fb58b3
+
+	measure 'Rolling 90-Day Incident Rate' =
+			
+			VAR EndDate =
+			    MAX ( 'dim_date'[date] )
+			VAR DateWindow =
+			    DATESINPERIOD (
+			        'dim_date'[date],
+			        EndDate,
+			        -90,
+			        DAY
+			    )
+			RETURN
+			    CALCULATE (
+			        [Incident Rate per 100 Resident-Days],
+			        DateWindow
+			    )
+		formatString: 0.0000
+		lineageTag: 350701e8-f85b-4f33-b89c-e4f05ab17a84
+
+	measure 'Completed Move-Outs' =
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( 'fact_lease'[lease_id] ),
+			    NOT ISBLANK ( 'fact_lease'[move_out_date] )
+			)
+		formatString: 0
+		lineageTag: 7700eb36-7c4a-41c8-af87-1bb13a7cafc2
+
+	column Column1
+		dataType: string
+		isHidden
+		lineageTag: 86a21a51-fc96-4fe3-bdbb-259c13fd0f6e
+		summarizeBy: none
+		sourceColumn: Column1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	changedProperty = IsHidden
+
+	annotation PBI_ResultType = Table
+

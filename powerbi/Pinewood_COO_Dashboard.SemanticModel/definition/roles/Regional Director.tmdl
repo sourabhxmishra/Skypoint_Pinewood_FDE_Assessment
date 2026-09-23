@@ -1,0 +1,7 @@
+role 'Regional Director'
+	modelPermission: read
+
+	tablePermission dim_community = 'dim_community'[region] = "Pacific Northwest"
+
+	annotation PBI_Id = a2ab5ecd73074b78a056f20964554cc2
+

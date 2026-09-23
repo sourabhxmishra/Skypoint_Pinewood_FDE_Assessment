@@ -1,0 +1,315 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "8ef3040dc3dee2e033bd",
+  "position": {
+    "x": 20.663677130044846,
+    "y": 662.95964125560545,
+    "z": 11,
+    "height": 180.80717488789239,
+    "width": 1238.0986547085204,
+    "tabOrder": 11
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_community"
+                    }
+                  },
+                  "Property": "community_name"
+                }
+              },
+              "queryRef": "dim_community.community_name",
+              "nativeQueryRef": "community_name",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Current Occupancy %"
+                }
+              },
+              "queryRef": "_Measures.Current Occupancy %",
+              "nativeQueryRef": "Current Occupancy %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Trailing 90-Day Move-Out Rate %"
+                }
+              },
+              "queryRef": "_Measures.Trailing 90-Day Move-Out Rate %",
+              "nativeQueryRef": "Trailing 90-Day Move-Out Rate %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Incident Rate per 100 Resident-Days"
+                }
+              },
+              "queryRef": "_Measures.Incident Rate per 100 Resident-Days",
+              "nativeQueryRef": "Incident Rate per 100 Resident-Days"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "389.627754080015D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dim_community.community_name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "226.65470852017938D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Current Occupancy %"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "304.0986529789625D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Trailing 90-Day Move-Out Rate %"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "272.88339395267553D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Incident Rate per 100 Resident-Days"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Community Performance Exceptions'"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI Semibold'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#DCE5E4'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "6D"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "e77039d6a4d5ac8310aa",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_community"
+              }
+            },
+            "Property": "community_name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "48854d8a1700a2869818",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Current Occupancy %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "349272589e61b0553671",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Trailing 90-Day Move-Out Rate %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b9f15a4d110856ac0577",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Incident Rate per 100 Resident-Days"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

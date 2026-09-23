@@ -1,0 +1,60 @@
+table dim_community
+	lineageTag: 65e8f1fd-9944-4a83-9579-964140a7b3ab
+
+	column community_id
+		dataType: string
+		lineageTag: 1057e1ef-bfb2-441d-8797-a34957ad7df3
+		summarizeBy: none
+		sourceColumn: community_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column community_name
+		dataType: string
+		lineageTag: 54f05522-1966-46b6-9406-2077337d9b2a
+		summarizeBy: none
+		sourceColumn: community_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column state_code
+		dataType: string
+		lineageTag: 39c7fec4-3d8e-498a-952c-441ece89ce2b
+		summarizeBy: none
+		sourceColumn: state_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		lineageTag: 999ddfac-60b5-4e50-a2e9-b89c83d40dd1
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column geography_is_assumed
+		dataType: boolean
+		isHidden
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 671f81fd-87d5-43fb-8c1d-9a8585ec5fb3
+		summarizeBy: none
+		sourceColumn: geography_is_assumed
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_community = m
+		mode: import
+		source =
+				let
+				    FileBinary = GoldFiles{[Name = "dim_community.parquet"]}[Content],
+				    Source = Parquet.Document(FileBinary)
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

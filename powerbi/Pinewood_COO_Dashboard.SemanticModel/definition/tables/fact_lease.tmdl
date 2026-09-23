@@ -1,0 +1,99 @@
+table fact_lease
+	lineageTag: b93e67cb-5e23-4cee-8949-fe6a0751a50b
+
+	column lease_id
+		dataType: string
+		isHidden
+		lineageTag: a828f508-5fff-4edf-9c43-5a981f9aef6e
+		summarizeBy: none
+		sourceColumn: lease_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column resident_id
+		dataType: string
+		isHidden
+		lineageTag: 31207a01-099c-4781-9f1a-a4733a67fa12
+		summarizeBy: none
+		sourceColumn: resident_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column unit_id
+		dataType: string
+		isHidden
+		lineageTag: f45c1b2c-4519-47f3-857c-782e99914b56
+		summarizeBy: none
+		sourceColumn: unit_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column community_id
+		dataType: string
+		lineageTag: fa1752ed-ef2e-4ba2-9238-2b8e2bbb7594
+		summarizeBy: none
+		sourceColumn: community_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column move_in_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 17e762ff-9cf2-4bf2-82f8-12ca021a3e1f
+		summarizeBy: none
+		sourceColumn: move_in_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column move_out_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: be982073-be52-4746-838e-e38a83157b4a
+		summarizeBy: none
+		sourceColumn: move_out_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column move_out_reason
+		dataType: string
+		lineageTag: 0bf2041f-2732-4971-b973-7a2a130e3827
+		summarizeBy: none
+		sourceColumn: move_out_reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column monthly_rate
+		dataType: decimal
+		formatString: "₹"\ #,0.###############;#,0.###############\ -"₹";"₹"\ #,0.###############
+		lineageTag: 6dcafe89-59a8-482d-a581-e95f8980f0da
+		summarizeBy: sum
+		sourceColumn: monthly_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-IN"}
+
+	partition fact_lease = m
+		mode: import
+		source =
+				let
+				    FileBinary = GoldFiles{[Name = "fact_lease.parquet"]}[Content],
+				    Source = Parquet.Document(FileBinary),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"monthly_rate", Currency.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

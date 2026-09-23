@@ -1,0 +1,40 @@
+relationship f476eb5c-7aa8-23e4-9c25-eb9f490f74b3
+	fromColumn: fact_resident_day.community_id
+	toColumn: dim_community.community_id
+
+relationship ba1fdd5e-e0bf-2dd6-64bc-f8f09202b2a3
+	fromColumn: fact_occupancy_monthly.community_id
+	toColumn: dim_community.community_id
+
+relationship 2c047448-eb1e-eb39-4e48-8fcb33d963bd
+	fromColumn: fact_lease.community_id
+	toColumn: dim_community.community_id
+
+relationship 071902df-7e91-75c6-c9a9-51f70bed77c2
+	fromColumn: fact_incident.community_id
+	toColumn: dim_community.community_id
+
+relationship 277929e0-b2d6-b997-c64b-d4edef9fa15f
+	fromColumn: fact_resident_day.date
+	toColumn: dim_date.date
+
+relationship 01b2775a-c1b2-0891-ab4a-f29ba030a404
+	fromColumn: fact_occupancy_monthly.month_start
+	toColumn: dim_date.date
+
+relationship adfe7750-d8b0-e536-9260-92d438556bce
+	fromColumn: fact_lease.move_out_date
+	toColumn: dim_date.date
+
+relationship 50a78412-a9ca-e819-7bdc-d4e1d994b43f
+	fromColumn: fact_incident.incident_date
+	toColumn: dim_date.date
+
+relationship 2f501588-6a6e-949f-cd80-97b9256ae418
+	fromColumn: fact_resident_day.care_level
+	toColumn: dim_care_level.care_level
+
+relationship e51c619d-d840-ace1-fa64-eabcabe64cdc
+	fromColumn: fact_incident.care_level
+	toColumn: dim_care_level.care_level
+
