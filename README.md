@@ -382,7 +382,8 @@ Activation is optional. Run the project interpreter directly:
 
 ## Recorded Walkthrough
 
-Walkthrough link: **To be added before submission.**
+- [Watch the walkthrough on Google Drive](https://drive.google.com/file/d/1HsclNoZmZ4z-Ccl3UYPgfrSU4vHuwa5r/view?usp=sharing)
+- [Download the walkthrough video archive from this repository](video/Pinewood_Senior_Living_Assessment_Walkthrough.zip)
 
 ## Author
 
