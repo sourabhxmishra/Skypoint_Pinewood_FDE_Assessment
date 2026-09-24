@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "812e6bdbe8e08ac152a3",
   "position": {
-    "x": 18.941704035874441,
-    "y": 860.98654708520189,
-    "z": 12,
-    "height": 39,
-    "width": 1239.8206278026908,
-    "tabOrder": 12
+    "x": 20.205902539464656,
+    "y": 1010.2951269732328,
+    "z": 10000,
+    "height": 23.719972546328073,
+    "width": 1239.5881949210707,
+    "tabOrder": 11000
   },
   "visual": {
     "visualType": "textbox",
@@ -19,11 +19,18 @@
               {
                 "textRuns": [
                   {
+                    "value": "Note: ",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI Semibold",
+                      "fontSize": "8pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
                     "value": "Methodology note  |  Occupancy is a provisional proxy: month-end active residents divided by valid inventory units. Lease coverage, shared-unit capacity, and unit availability status are incomplete in the supplied data.",
                     "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "fontSize": "9pt",
-                      "color": "#52666b"
+                      "fontSize": "8pt",
+                      "color": "#ffffff"
                     }
                   }
                 ]
@@ -49,7 +56,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#EAF2F1'"
+                      "Value": "'#2A889A'"
                     }
                   }
                 }
@@ -84,21 +91,21 @@
             "top": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "0D"
                 }
               }
             },
             "left": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "3D"
                 }
               }
             },
             "right": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "0D"
                 }
               }
             }

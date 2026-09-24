@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "7015fb2fb08d922a6a29",
   "position": {
-    "x": 19.6846638694294,
-    "y": 68.139221086486387,
-    "z": 2,
-    "height": 57.539786695255167,
-    "width": 249.84381065045008,
-    "tabOrder": 2
+    "x": 645,
+    "y": 80,
+    "z": 12500,
+    "height": 50,
+    "width": 605,
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "slicer",
@@ -61,6 +61,46 @@
             }
           }
         }
+      ],
+      "header": [
+        {
+          "properties": {
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "items": [
+        {
+          "properties": {
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "padding": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -97,7 +137,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
@@ -156,6 +196,20 @@
                 }
               }
             }
+          }
+        },
+        {
+          "properties": {
+            "verticalSpacing": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
           }
         }
       ],
@@ -230,7 +284,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
@@ -239,7 +293,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#CBDAD8'"
+                      "Value": "'#DCE5E4'"
                     }
                   }
                 }
@@ -275,7 +329,7 @@
             "preset": {
               "expr": {
                 "Literal": {
-                  "Value": "'BottomLeft'"
+                  "Value": "'Custom'"
                 }
               }
             },
@@ -284,8 +338,8 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 2,
-                      "Percent": -0.5
+                      "ColorId": 0,
+                      "Percent": -0.1
                     }
                   }
                 }
@@ -294,35 +348,35 @@
             "transparency": {
               "expr": {
                 "Literal": {
-                  "Value": "70L"
+                  "Value": "0D"
                 }
               }
             },
             "shadowSpread": {
               "expr": {
                 "Literal": {
-                  "Value": "3L"
+                  "Value": "3D"
                 }
               }
             },
             "shadowBlur": {
               "expr": {
                 "Literal": {
-                  "Value": "10L"
+                  "Value": "0D"
                 }
               }
             },
             "angle": {
               "expr": {
                 "Literal": {
-                  "Value": "135L"
+                  "Value": "90D"
                 }
               }
             },
             "shadowDistance": {
               "expr": {
                 "Literal": {
-                  "Value": "10L"
+                  "Value": "15D"
                 }
               }
             }
